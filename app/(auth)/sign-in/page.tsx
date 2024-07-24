@@ -1,9 +1,16 @@
+import AuthForm from '@/components/AuthForm'
+import { getLoggedInUser } from '@/lib/actions/user.actions';
+import { redirect } from 'next/navigation';
 import React from 'react'
 
-const page = () => {
+const SignIn = async () => {
+    const loggedIn = await getLoggedInUser();
+    if (loggedIn) redirect("/");
   return (
-    <div>page</div>
+    <section className="flex-center size-full max-sm:px-6">
+      <AuthForm  type='sign-in' />
+    </section>
   )
 }
 
-export default page
+export default SignIn
